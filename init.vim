@@ -1,19 +1,23 @@
 call plug#begin('~/.vim/plugged')
 
-" < Other Plugins, if they exist >
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'scrooloose/nerdtree'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
+" colorscheme
 Plug 'morhetz/gruvbox'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+" file search
 Plug 'ctrlpvim/ctrlp.vim'
+" grep plugin
 Plug 'mhinz/vim-grepper'
+" restore cursor to file position in previous editing session
+Plug 'farmergreg/vim-lastplace'
 "Plug 'dkprice/vim-easygrep'
 "Plug 'othree/eregex.vim'
 call plug#end()

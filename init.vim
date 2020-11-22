@@ -119,6 +119,8 @@ set autoindent
 set termguicolors
 set ignorecase
 set smartcase
+" copy from nvim to system clipboard
+set clipboard+=unnamedplus
 
 " -------------------------------------------------------------------------------------------------
 " ctrlp default settings

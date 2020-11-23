@@ -18,6 +18,10 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mhinz/vim-grepper'
 " restore cursor to file position in previous editing session
 Plug 'farmergreg/vim-lastplace'
+
+" plugin for rust
+Plug 'rust-lang/rust.vim'
+Plug '907th/vim-auto-save'
 "Plug 'dkprice/vim-easygrep'
 "Plug 'othree/eregex.vim'
 call plug#end()
@@ -103,6 +107,23 @@ au FileType go nmap <silent> gie <Plug>(go-iferr)
 au FileType go nmap <silent> gae <Plug>(go-alternate-edit)
 au FileType go nmap <silent> gas <Plug>(go-alternate-split)
 au FileType go nmap <silent> gav <Plug>(go-alternate-vertical)
+au FileType go nmap <silent> lrn <Plug>(go-rename)
+
+let g:go_highlight_array_whitespace_error    = 1
+let g:go_highlight_chan_whitespace_error     = 1
+let g:go_highlight_extra_types               = 1
+let g:go_highlight_space_tab_error           = 1
+let g:go_highlight_trailing_whitespace_error = 1
+let g:go_highlight_operators                 = 1
+let g:go_highlight_functions                 = 1
+let g:go_highlight_function_parameters       = 1
+let g:go_highlight_function_calls            = 1
+let g:go_highlight_types                     = 1
+let g:go_highlight_fields                    = 1
+let g:go_highlight_build_constraints         = 1
+let g:go_highlight_generate_tags             = 1
+let g:go_highlight_variable_declarations     = 1
+let g:go_highlight_variable_assignments      = 1
 
 
 " -------------------------------------------------------------------------------------------------
@@ -125,6 +146,8 @@ set ignorecase
 set smartcase
 " copy from nvim to system clipboard
 set clipboard+=unnamedplus
+let autosave=5
+
 
 " -------------------------------------------------------------------------------------------------
 " ctrlp default settings
@@ -166,3 +189,10 @@ let g:grepper.prompt_mapping_tool = '<leader>g'
 
 "let g:EasyGrepCommand=1
 "let g:EasyGrepPerlStyle=1
+
+" -------------------------------------------------------------------------------------------------
+" auto save default settings
+" -------------------------------------------------------------------------------------------------
+let g:auto_save = 0  " enable AutoSave on Vim startup
+let g:auto_save_silent = 0  " do not display the auto-save notification
+let g:auto_save_events = ["InsertLeave", "TextChanged"]

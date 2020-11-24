@@ -25,6 +25,7 @@ Plug '907th/vim-auto-save'
 
 " plugin for intensely nerdy commenting powers
 Plug 'preservim/nerdcommenter'
+Plug 'rhysd/git-messenger.vim'
 "Plug 'dkprice/vim-easygrep'
 "Plug 'othree/eregex.vim'
 call plug#end()

@@ -22,6 +22,9 @@ Plug 'farmergreg/vim-lastplace'
 " plugin for rust
 Plug 'rust-lang/rust.vim'
 Plug '907th/vim-auto-save'
+
+" plugin for intensely nerdy commenting powers
+Plug 'preservim/nerdcommenter'
 "Plug 'dkprice/vim-easygrep'
 "Plug 'othree/eregex.vim'
 call plug#end()
@@ -196,3 +199,25 @@ let g:grepper.prompt_mapping_tool = '<leader>g'
 let g:auto_save = 0  " enable AutoSave on Vim startup
 let g:auto_save_silent = 0  " do not display the auto-save notification
 let g:auto_save_events = ["InsertLeave", "TextChanged"]
+
+" -------------------------------------------------------------------------------------------------
+" nerdcommenter settings
+" -------------------------------------------------------------------------------------------------
+" Create default mappings
+let g:NERDCreateDefaultMappings = 1
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" Align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" Set a language to use its alternate delimiters by default
+let g:NERDAltDelims_java = 1
+" Add your own custom formats or override the defaults
+let g:NERDCustomDelimiters = { 'c': { 'left': '/**','right': '*/' } }
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" Enable NERDCommenterToggle to check all selected lines is commented or not 
+let g:NERDToggleCheckAllLines = 1

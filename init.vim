@@ -26,6 +26,10 @@ Plug '907th/vim-auto-save'
 " plugin for intensely nerdy commenting powers
 Plug 'preservim/nerdcommenter'
 Plug 'rhysd/git-messenger.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'mattn/webapi-vim'
+Plug 'preservim/tagbar'
 "Plug 'dkprice/vim-easygrep'
 "Plug 'othree/eregex.vim'
 call plug#end()
@@ -136,6 +140,7 @@ let g:go_highlight_variable_assignments      = 1
 
 " short cut for opening and closing NERDTree
 map <F10> :NERDTreeToggle<CR>
+nmap <Leader>rr :NERDTreeFocus<cr>R<c-w><c-p>
 
 " -------------------------------------------------------------------------------------------------
 " misc default settings
@@ -146,11 +151,14 @@ set nu
 set shiftwidth=4
 set autoindent
 set termguicolors
-set ignorecase
+" set ignorecase
 set smartcase
 " copy from nvim to system clipboard
 set clipboard+=unnamedplus
 let autosave=5
+set mmp=5000
+syntax enable
+filetype plugin indent on
 
 
 " -------------------------------------------------------------------------------------------------
@@ -222,3 +230,11 @@ let g:NERDCommentEmptyLines = 1
 let g:NERDTrimTrailingWhitespace = 1
 " Enable NERDCommenterToggle to check all selected lines is commented or not 
 let g:NERDToggleCheckAllLines = 1
+
+" -------------------------------------------------------------------------------------------------
+" rust settings
+" -------------------------------------------------------------------------------------------------
+let g:rustfmt_autosave = 1
+
+
+nmap <F8> :TagbarToggle<CR>

@@ -21,7 +21,6 @@ Plug 'farmergreg/vim-lastplace'
 
 " plugin for rust
 Plug 'rust-lang/rust.vim'
-Plug '907th/vim-auto-save'
 
 " plugin for intensely nerdy commenting powers
 Plug 'preservim/nerdcommenter'
@@ -30,6 +29,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'mattn/webapi-vim'
 Plug 'preservim/tagbar'
+" Plug 'whalecold/ZoomWin'
 "Plug 'dkprice/vim-easygrep'
 "Plug 'othree/eregex.vim'
 call plug#end()
@@ -115,8 +115,13 @@ au FileType go nmap <silent> gie <Plug>(go-iferr)
 au FileType go nmap <silent> gae <Plug>(go-alternate-edit)
 au FileType go nmap <silent> gas <Plug>(go-alternate-split)
 au FileType go nmap <silent> gav <Plug>(go-alternate-vertical)
-au FileType go nmap <silent> lrn <Plug>(go-rename)
+au FileType go nmap <silent> gut <Plug>(go-test-func)
+autocmd FileType go nnoremap <buffer> <C-]> :GoFmtAutoSaveToggle<cr>
+autocmd FileType go nnoremap <buffer> gfm :GoImports<cr>
+autocmd FileType go nnoremap <buffer> <leader>li :GoMetaLinter<cr>
 
+" let g:go_fmt_autosave = 0
+" let g:go_imports_autosave = 0
 let g:go_highlight_array_whitespace_error    = 1
 let g:go_highlight_chan_whitespace_error     = 1
 let g:go_highlight_extra_types               = 1
@@ -132,6 +137,10 @@ let g:go_highlight_build_constraints         = 1
 let g:go_highlight_generate_tags             = 1
 let g:go_highlight_variable_declarations     = 1
 let g:go_highlight_variable_assignments      = 1
+let g:go_debug_windows = {
+      \ 'vars':       'rightbelow 60vnew',
+      \ 'stack':      'rightbelow 10new',
+\ }
 
 
 " -------------------------------------------------------------------------------------------------
@@ -139,7 +148,7 @@ let g:go_highlight_variable_assignments      = 1
 " -------------------------------------------------------------------------------------------------
 
 " short cut for opening and closing NERDTree
-map <F10> :NERDTreeToggle<CR>
+map <F3> :NERDTreeToggle<CR>
 nmap <Leader>rr :NERDTreeFocus<cr>R<c-w><c-p>
 
 " -------------------------------------------------------------------------------------------------
@@ -155,10 +164,11 @@ set termguicolors
 set smartcase
 " copy from nvim to system clipboard
 set clipboard+=unnamedplus
-let autosave=5
 set mmp=5000
+set autowriteall
 syntax enable
 filetype plugin indent on
+" nnoremap <buffer> <C-[> :W<cr>
 
 
 " -------------------------------------------------------------------------------------------------
@@ -203,13 +213,6 @@ let g:grepper.prompt_mapping_tool = '<leader>g'
 "let g:EasyGrepPerlStyle=1
 
 " -------------------------------------------------------------------------------------------------
-" auto save default settings
-" -------------------------------------------------------------------------------------------------
-let g:auto_save = 0  " enable AutoSave on Vim startup
-let g:auto_save_silent = 0  " do not display the auto-save notification
-let g:auto_save_events = ["InsertLeave", "TextChanged"]
-
-" -------------------------------------------------------------------------------------------------
 " nerdcommenter settings
 " -------------------------------------------------------------------------------------------------
 " Create default mappings
@@ -237,4 +240,4 @@ let g:NERDToggleCheckAllLines = 1
 let g:rustfmt_autosave = 1
 
 
-nmap <F8> :TagbarToggle<CR>
+nmap <F4> :TagbarToggle<CR>

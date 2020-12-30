@@ -2,8 +2,10 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
-Plug 'scrooloose/nerdtree'
+Plug 'preservim/nerdtree'
+" Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
+Plug 'scrooloose/nerdtree-project-plugin'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-airline/vim-airline'
 " colorscheme
@@ -29,7 +31,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'mattn/webapi-vim'
 Plug 'preservim/tagbar'
-" Plug 'whalecold/ZoomWin'
+" an efficient fuzzy finder that helps to locate files, buffers, mrus, gtags, etc. on the fly.
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension' }
+Plug 'whalecold/ZoomWin'
+Plug 'APZelos/blamer.nvim'
 "Plug 'dkprice/vim-easygrep'
 "Plug 'othree/eregex.vim'
 call plug#end()
@@ -150,6 +155,7 @@ let g:go_debug_windows = {
 " short cut for opening and closing NERDTree
 map <F3> :NERDTreeToggle<CR>
 nmap <Leader>rr :NERDTreeFocus<cr>R<c-w><c-p>
+let NERDTreeShowBookmarks=1
 
 " -------------------------------------------------------------------------------------------------
 " misc default settings
@@ -166,6 +172,8 @@ set smartcase
 set clipboard+=unnamedplus
 set mmp=5000
 set autowriteall
+" auto set the cwd to cur files
+" set autochdir
 syntax enable
 filetype plugin indent on
 " nnoremap <buffer> <C-[> :W<cr>
@@ -241,3 +249,50 @@ let g:rustfmt_autosave = 1
 
 
 nmap <F4> :TagbarToggle<CR>
+
+
+" -------------------------------------------------------------------------------------------------
+" leaderF settings
+" -------------------------------------------------------------------------------------------------
+" let g:Lf_CommandMap = {'<C-K>': ['<Up>'], '<C-J>': ['<Down>']}
+" don't show the help in normal mode
+let g:Lf_HideHelp = 1
+let g:Lf_UseCache = 0
+let g:Lf_UseVersionControlTool = 0
+let g:Lf_IgnoreCurrentBufferName = 1
+" popup mode
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_PreviewInPopup = 1
+let g:Lf_StlSeparator = { 'left': "\ue0b0", 'right': "\ue0b2", 'font': "DejaVu Sans Mono for Powerline" }
+let g:Lf_PreviewResult = {'Function': 0, 'BufTag': 0 }
+
+let g:Lf_ShortcutF = "<leader>ff"
+noremap <leader>fb :<C-U><C-R>=printf("Leaderf buffer %s", "")<CR><CR>
+noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf bugTag %s", "")<CR><CR>
+noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
+noremap <leader>fw :<C-U><C-R>=printf("Leaderf window %s", "")<CR><CR>
+" noremap <leader>ft :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
+
+noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
+noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F -e %s ", leaderf#Rg#visual())<CR>
+noremap go :<C-U>Leaderf! rg --recall<CR>
+
+" should use `Leaderf gtags --update` first
+let g:Lf_GtagsAutoGenerate = 0
+let g:Lf_Gtagslabel = 'native-pygments'
+noremap <leader>fr :<C-U><C-R>=printf("Leaderf! gtags -r %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fd :<C-U><C-R>=printf("Leaderf! gtags -d %s --auto-jump", expand("<cword>"))<CR><CR>
+noremap <leader>fo :<C-U><C-R>=printf("Leaderf! gtags --recall %s", "")<CR><CR>
+noremap <leader>fn :<C-U><C-R>=printf("Leaderf gtags --next %s", "")<CR><CR>
+noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
+
+
+" imap <C-l> <Plug>(coc-snippets-expand)
+" vmap <C-j> <Plug>(coc-snippets-select)
+"
+
+let g:blamer_enabled = 1
+let g:blamer_template = '<author> <author-time> <summary>'

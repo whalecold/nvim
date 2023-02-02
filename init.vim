@@ -1,7 +1,11 @@
+" ---------------------------------------------------------------------------------------------------
+" vim-plugin 
+" ---------------------------------------------------------------------------------------------------
+
 call plug#begin('~/.vim/plugged')
 
 Plug 'fatih/vim-go'
-Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
@@ -27,7 +31,7 @@ Plug 'rust-lang/rust.vim'
 
 " plugin for intensely nerdy commenting powers
 Plug 'preservim/nerdcommenter'
-Plug 'rhysd/git-messenger.vim'
+" Plug 'rhysd/git-messenger.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'mattn/webapi-vim'
@@ -38,7 +42,16 @@ Plug 'whalecold/ZoomWin'
 Plug 'APZelos/blamer.nvim'
 "Plug 'dkprice/vim-easygrep'
 "Plug 'othree/eregex.vim'
+Plug 'jreybert/vimagit'
 call plug#end()
+
+" -------------------------------------------------------------------------------------------------
+"  vimgit settings
+" -------------------------------------------------------------------------------------------------
+" Open vimagit pane git status
+nnoremap <leader>gs :Magit<CR>       
+" Push to remote
+nnoremap <leader>gp :! git push<CR>
 
 
 " -------------------------------------------------------------------------------------------------
@@ -198,25 +211,26 @@ let g:ctrlp_map = '<c-p>'
 "let g:ctrlp_user_command = 'dir %s /-n /b /s /a-d'  " Windows
 " for browsing the input history
 "
+"
 " -------------------------------------------------------------------------------------------------
-" grepper default settings
+" grepper default settings 
 " -------------------------------------------------------------------------------------------------
-cnoremap <c-n> <down>
-cnoremap <c-p> <up>
-
-nmap gs <plug>(GrepperOperator)
-xmap gs <plug>(GrepperOperator)
-
-nnoremap <leader>gg :Grepper -tool git<cr>
-nnoremap <leader>ga :Grepper -tool ag<cr>
-nnoremap <leader>gs :Grepper -tool ag -side<cr>
-nnoremap <leader>*  :Grepper -tool ag -cword -noprompt<cr>
-
-let g:grepper = {}
-let g:grepper.tools = ['git', 'ag', 'grep']
+"cnoremap <c-n> <down>
+"cnoremap <c-p> <up>
+"
+"nmap gs <plug>(GrepperOperator)
+"xmap gs <plug>(GrepperOperator)
+"
+"nnoremap <leader>gg :Grepper -tool git<cr>
+"nnoremap <leader>ga :Grepper -tool ag<cr>
+"nnoremap <leader>gs :Grepper -tool ag -side<cr>
+"nnoremap <leader>*  :Grepper -tool ag -cword -noprompt<cr>
+"
+"let g:grepper = {}
+"let g:grepper.tools = ['git', 'ag', 'grep']
 "let g:grepper.open = 0
 "let g:grepper.jump = 0
-let g:grepper.prompt_mapping_tool = '<leader>g'
+"let g:grepper.prompt_mapping_tool = '<leader>g'
 
 "let g:EasyGrepCommand=1
 "let g:EasyGrepPerlStyle=1
@@ -295,5 +309,50 @@ noremap <leader>fp :<C-U><C-R>=printf("Leaderf gtags --previous %s", "")<CR><CR>
 " vmap <C-j> <Plug>(coc-snippets-select)
 "
 
+"============================ blamer.nvim =================
 let g:blamer_enabled = 1
 let g:blamer_template = '<author> <author-time> <summary>'
+"============================ blamer.nvim =================
+
+"============================== coc-git ====================================
+" navigate chunks of current buffer
+"nmap [g <Plug>(coc-git-prevchunk)
+"nmap ]g <Plug>(coc-git-nextchunk)
+"" navigate conflicts of current buffer
+"nmap [c <Plug>(coc-git-prevconflict)
+"nmap ]c <Plug>(coc-git-nextconflict)
+"" show chunk diff at current position
+"nmap gs <Plug>(coc-git-chunkinfo)
+"" show commit contains current position
+"nmap gc <Plug>(coc-git-commit)
+" create text object for git chunks
+"omap ig <Plug>(coc-git-chunk-inner)
+"xmap ig <Plug>(coc-git-chunk-inner)
+"omap ag <Plug>(coc-git-chunk-outer)
+"xmap ag <Plug>(coc-git-chunk-outer)
+
+
+" lightline
+"let g:lightline = {
+"  \ 'active': {
+"  \   'left': [
+"  \     [ 'mode', 'paste' ],
+"  \     [ 'ctrlpmark', 'git', 'diagnostic', 'cocstatus', 'filename', 'method' ]
+"  \   ],
+"  \   'right':[
+"  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+"  \     [ 'blame' ]
+"  \   ],
+"  \ },
+"  \ 'component_function': {
+"  \   'blame': 'LightlineGitBlame',
+"  \ }
+"\ }
+"
+"function! LightlineGitBlame() abort
+"  let blame = get(b:, 'coc_git_blame', '')
+"  " return blame
+"  return winwidth(0) > 120 ? blame : ''
+"endfunction
+
+"============================== coc-git ====================================

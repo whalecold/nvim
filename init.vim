@@ -50,6 +50,8 @@ Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 "Plug 'folke/neodev.nvim'
 Plug 'leoluz/nvim-dap-go'
+Plug 'chentoast/marks.nvim'
+Plug 'akinsho/toggleterm.nvim', {'tag' : '*'}
 call plug#end()
 
 " -------------------------------------------------------------------------------------------------
@@ -364,3 +366,6 @@ let g:blamer_template = '<author> <author-time> <summary>'
 
 "============================== coc-git ====================================
 lua require("plugins")
+lua require("toggleterm").setup()
+
+nmap <silent> <leader>te  :<C-u>ToggleTerm direction=float<cr>

@@ -45,11 +45,11 @@ Plug 'APZelos/blamer.nvim'
 "Plug 'dkprice/vim-easygrep'
 "Plug 'othree/eregex.vim'
 Plug 'jreybert/vimagit'
-Plug 'puremourning/vimspector'
+"Plug 'puremourning/vimspector'
 Plug 'mfussenegger/nvim-dap'
 Plug 'rcarriga/nvim-dap-ui'
 "Plug 'folke/neodev.nvim'
-"Plug 'leoluz/nvim-dap-go'
+Plug 'leoluz/nvim-dap-go'
 call plug#end()
 
 " -------------------------------------------------------------------------------------------------
@@ -61,7 +61,6 @@ nnoremap <leader>gs :Magit<CR>
 nnoremap <leader>gp :! git push<CR>
 " Enable deletion of untracked files in Magit
 let g:magit_discard_untracked_do_delete=1
-
 " -------------------------------------------------------------------------------------------------
 " coc.nvim default settings
 " -------------------------------------------------------------------------------------------------
@@ -79,10 +78,11 @@ set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+"inoremap <silent><expr> <TAB>
+"      \ pumvisible() ? "\<C-n>" :
+"      \ <SID>check_back_space() ? "\<TAB>" :
+"      \ coc#refresh()
+"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -128,7 +128,6 @@ nnoremap <silent> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-
 
 " -------------------------------------------------------------------------------------------------
 " vim-go.nvim default settings
@@ -365,7 +364,3 @@ let g:blamer_template = '<author> <author-time> <summary>'
 
 "============================== coc-git ====================================
 lua require("plugins")
-
-nnoremap <leader>gb  :lua require'dap'.toggle_breakpoint()<cr>
-nnoremap <leader>gc  :lua require'dap'.continue()<cr>
-nnoremap <leader>gn  :lua require'dap'.step_over()<cr>

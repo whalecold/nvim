@@ -27,11 +27,44 @@ dap.adapters.go = function(callback, config)
 		end
 	end)
 	vim.defer_fn(function()
-		callback({ type = "server", host = "127.0.0.1", port = port })
+		callback({ 
+			type = "server",
+			host = "127.0.0.1",
+			port = port,
+			options = {
+				initialize_timeout_sec = 20,
+			},
+		})
 	end, 100)
 end
 
+local function get_arguments()
+  local co = coroutine.running()
+  if co then
+    return coroutine.create(function()
+      local args = {}
+      vim.ui.input({ prompt = "Args: " }, function(input)
+        args = vim.split(input or "", " ")
+      end)
+      coroutine.resume(co, args)
+    end)
+  else
+    local args = {}
+    vim.ui.input({ prompt = "Args: " }, function(input)
+      args = vim.split(input or "", " ")
+    end)
+    return args
+  end
+end
+
 dap.configurations.go = {
+	{
+      type = "go",
+      name = "Debug (Arguments)",
+      request = "launch",
+      program = "${file}",
+      args = get_arguments,
+    },
 	{
 		type = "go",
 		name = "Debug",

@@ -33,7 +33,9 @@ Plug 'rust-lang/rust.vim'
 Plug 'preservim/nerdcommenter'
 " Plug 'rhysd/git-messenger.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-surround'
+
 Plug 'mattn/webapi-vim'
 Plug 'preservim/tagbar'
 " an efficient fuzzy finder that helps to locate files, buffers, mrus, gtags, etc. on the fly.
@@ -52,7 +54,8 @@ call plug#end()
 nnoremap <leader>gs :Magit<CR>       
 " Push to remote
 nnoremap <leader>gp :! git push<CR>
-
+" Enable deletion of untracked files in Magit
+let g:magit_discard_untracked_do_delete=1
 
 " -------------------------------------------------------------------------------------------------
 " coc.nvim default settings

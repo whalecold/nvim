@@ -17,7 +17,8 @@ Plug 'junegunn/fzf.vim'
 " file search
 Plug 'ctrlpvim/ctrlp.vim'
 " grep plugin
-Plug 'mhinz/vim-grepper'
+" grepper is an Subset of LeaderF, so remove it.
+" Plug 'mhinz/vim-grepper'
 " restore cursor to file position in previous editing session
 Plug 'farmergreg/vim-lastplace'
 
@@ -272,7 +273,7 @@ noremap <leader>fm :<C-U><C-R>=printf("Leaderf mru %s", "")<CR><CR>
 noremap <leader>ft :<C-U><C-R>=printf("Leaderf bugTag %s", "")<CR><CR>
 noremap <leader>fl :<C-U><C-R>=printf("Leaderf line %s", "")<CR><CR>
 noremap <leader>fw :<C-U><C-R>=printf("Leaderf window %s", "")<CR><CR>
-" noremap <leader>ft :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
+noremap <leader>ft :<C-U><C-R>=printf("Leaderf function %s", "")<CR><CR>
 
 noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg --current-buffer -e %s ", expand("<cword>"))<CR>
 noremap <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>

@@ -45,6 +45,11 @@ Plug 'APZelos/blamer.nvim'
 "Plug 'dkprice/vim-easygrep'
 "Plug 'othree/eregex.vim'
 Plug 'jreybert/vimagit'
+Plug 'puremourning/vimspector'
+Plug 'mfussenegger/nvim-dap'
+Plug 'rcarriga/nvim-dap-ui'
+"Plug 'folke/neodev.nvim'
+"Plug 'leoluz/nvim-dap-go'
 call plug#end()
 
 " -------------------------------------------------------------------------------------------------
@@ -359,3 +364,8 @@ let g:blamer_template = '<author> <author-time> <summary>'
 "endfunction
 
 "============================== coc-git ====================================
+lua require("plugins")
+
+nnoremap <leader>gb  :lua require'dap'.toggle_breakpoint()<cr>
+nnoremap <leader>gc  :lua require'dap'.continue()<cr>
+nnoremap <leader>gn  :lua require'dap'.step_over()<cr>
